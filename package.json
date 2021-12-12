@@ -1,6 +1,6 @@
 {
   "name": "react-mui-clean-boilerplate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Script to start a react with MUI project with a clean architecture",
   "main": "index.js",
   "scripts": {
