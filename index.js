@@ -26,13 +26,13 @@ prompt.get(schema, (err, result) => {
     return onErr(err);
   }
 
-  const projectPath = `${__dirname}/${result.projectName}`;
+  const projectPath = `${process.cwd()}/${result.projectName}`;
   const git = result.gitUrl;
 
   try {
     execSync(
       `git clone git@github.com:leonardocasagrande/react-material-boilerplate.git ${result.projectName}`,
-      { cwd: __dirname }
+      { cwd: process.cwd() }
     );
 
     execSync("rm -rf .git", { cwd: projectPath });
@@ -45,7 +45,6 @@ prompt.get(schema, (err, result) => {
       const content = fs.readFileSync(`${projectPath}/package.json`, 'utf8')
       const pkg = JSON.parse(content);
       pkg.name = result.projectName;
-      console.log("PKG", pkg)
       fs.writeFileSync(`${projectPath}/package.json`, JSON.stringify(pkg, null, "\t"));
     }
     
