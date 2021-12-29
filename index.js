@@ -30,6 +30,7 @@ prompt.get(schema, (err, result) => {
   const git = result.gitUrl;
 
   try {
+    console.log("Cloning project...")
     execSync(
       `git clone git@github.com:leonardocasagrande/react-material-boilerplate.git ${result.projectName}`,
       { cwd: process.cwd() }
@@ -37,7 +38,7 @@ prompt.get(schema, (err, result) => {
 
     execSync("rm -rf .git", { cwd: projectPath });
     const fs = require('fs');
-    console.log("Updating package.json");
+    console.log("Updating package.json...");
     if (!fs.existsSync(`${projectPath}/package.json`) ) {
        console.log('file doesnt exists')
     }
@@ -56,7 +57,11 @@ prompt.get(schema, (err, result) => {
       execSync("git push -u origin master", { cwd: projectPath });
     }
     console.log("\n\n\nProject created successfully!");
-    console.log(`Run cd ${result.projectName} to start coding!`);
+    console.log("\n\nRun the following commands to start coding");
+    console.log(`\n\ncd ${result.projectName}`);
+    console.log(`\nnpm install`);
+    console.log(`\nnpm start`);
+    console.log(`\n\nHappy coding!`);
   } catch (err) {
     console.log(`\n  ERROR CLONING PROJECT \n`);
     console.log(err);
